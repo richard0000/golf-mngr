@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @signing.player_id %>
+</p>
+
+<p>
+  <strong>Tournament:</strong>
+  <%= @signing.tournament_id %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @signing.score %>
+</p>
+
+<%= link_to 'Edit', edit_signing_path(@signing) %> |
+<%= link_to 'Back', signings_path %>

@@ -1,0 +1,32 @@
+<%= form_with(model: signing) do |form| %>
+  <% if signing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(signing.errors.count, "error") %> prohibited this signing from being saved:</h2>
+
+      <ul>
+        <% signing.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :player_id %>
+    <%= form.text_field :player_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tournament_id %>
+    <%= form.text_field :tournament_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :score %>
+    <%= form.number_field :score %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
