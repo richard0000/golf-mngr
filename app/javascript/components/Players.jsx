@@ -2,7 +2,7 @@ import { Layout } from "antd";
 import React, { useEffect } from "react";
 import HeaderBar from "./HeaderBar";
 import "antd/dist/antd.css";
-import { Table, Modal, Input } from "antd";
+import { Table, message, Modal, Input } from "antd";
 import { useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import AddPlayerModal from "./AddPlayerModal";

@@ -4,6 +4,7 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import HeaderBar from "./HeaderBar";
 import AddTournamentModal from "./AddTournamentModal";
 import moment from "moment";
+import TournamentPlayers from "./TournamentPlayers";
 
 const { Content, Footer } = Layout;
 
@@ -11,7 +12,7 @@ const Tournaments = () => {
   const [tournaments, setTournaments] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [dateFrom, setDateFrom] = useState(moment());
-  const [dateTo, setDateTo] = useState(moment().add(10, "days"));
+  const [dateTo, setDateTo] = useState(moment().add(30, "days"));
   const [editingTournament, setEditingTournament] = useState(null);
   const columns = [
     {
@@ -159,6 +160,7 @@ const Tournaments = () => {
         }}
       >
         <Input
+          style={{ marginBottom: "1rem" }}
           value={editingTournament?.name}
           onChange={(e) => {
             setEditingTournament((pre) => {
@@ -167,6 +169,7 @@ const Tournaments = () => {
           }}
         />
         <Input
+          style={{ marginBottom: "1rem" }}
           value={editingTournament?.course_name}
           onChange={(e) => {
             setEditingTournament((pre) => {
@@ -175,6 +178,7 @@ const Tournaments = () => {
           }}
         />
         <DatePicker
+          style={{ marginBottom: "1rem" }}
           value={moment(editingTournament?.date)}
           allowClear={false}
           onChange={(date) => {
@@ -183,6 +187,7 @@ const Tournaments = () => {
             });
           }}
         />
+        <TournamentPlayers tournamentId={editingTournament?.id} />
       </Modal>
     );
   };

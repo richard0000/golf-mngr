@@ -6,6 +6,10 @@ Rails.application.routes.draw do
       put 'tournaments/:id', to:'tournaments#update'
       delete 'tournaments/:id', to: 'tournaments#destroy'
 
+      get 'tournament_players/:id', to: 'tournament_players#show'
+      post 'tournament_players/:id/add_player', to: 'tournament_players#add'
+      post 'tournament_players/:id/remove_player', to: 'tournament_players#remove'
+
       get 'players/index'
       post 'players', to: 'players#create'
       put 'players/:id', to: 'players#update'

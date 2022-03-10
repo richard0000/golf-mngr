@@ -5,7 +5,7 @@ class Api::V1::PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all.order(brand: :asc)
+    @players = Player.all.order(name: :asc)
     render json: @players
   end
 
