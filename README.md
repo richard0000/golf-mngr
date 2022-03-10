@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overall description
+This is a simple piece of software that handles the management of golf tournaments information.
 
-Things you may want to cover:
+## Technical Overview
+It's built using Rails 6 and React 17.
+To run the project locally, it's enough running `rails c` in the command line, at the root directory.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Tests
+- `bundle exec rspec`
