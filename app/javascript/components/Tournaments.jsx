@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Table, message, Modal, DatePicker, Input } from "antd";
+import { DatePicker, Input, Layout, message, Modal, Table } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import HeaderBar from "./HeaderBar";
 import AddTournamentModal from "./AddTournamentModal";
@@ -10,6 +10,8 @@ const { Content, Footer } = Layout;
 const Tournaments = () => {
   const [tournaments, setTournaments] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
+  const [dateFrom, setDateFrom] = useState(moment());
+  const [dateTo, setDateTo] = useState(moment().add(10, "days"));
   const [editingTournament, setEditingTournament] = useState(null);
   const columns = [
     {
@@ -54,8 +56,12 @@ const Tournaments = () => {
     loadTournaments();
   }, []);
 
+  useEffect(() => {
+    loadTournaments();
+  }, [dateTo, dateFrom]);
+
   const loadTournaments = () => {
-    const url = "api/v1/tournaments/index";
+    const url = `api/v1/tournaments/index?date_from=${dateFrom}&date_to=${dateTo}`;
     fetch(url)
       .then((data) => {
         if (data.ok) {
@@ -181,12 +187,30 @@ const Tournaments = () => {
     );
   };
 
+  const filters = () => {
+    return (
+      <>
+        <DatePicker.RangePicker
+          autoFocus={true}
+          onChange={(_, newDates) => {
+            setDateFrom(newDates[0]);
+            setDateTo(newDates[1]);
+          }}
+          placeholder={"Select the date range to look for tournaments"}
+          value={[moment(dateFrom), moment(dateTo)]}
+          style={{ marginBottom: 8 }}
+        />
+      </>
+    );
+  };
+
   return (
     <Layout className="layout">
       <HeaderBar />
       <Content style={{ padding: "0 50px" }}>
         <div className="site-layout-content" style={{ margin: "100px auto" }}>
           <h1>Tournaments List</h1>
+          {filters()}
           <Table
             className="table-striped-rows"
             dataSource={tournaments}

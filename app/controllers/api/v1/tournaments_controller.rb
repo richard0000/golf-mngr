@@ -1,11 +1,14 @@
 class Api::V1::TournamentsController < ApplicationController
   before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+  before_action :set_date_range, only: :index
   skip_before_action :verify_authenticity_token
 
   # GET /tournaments
   # GET /tournaments.json
   def index
-    @tournaments = Tournament.all.order(brand: :asc)
+    @tournaments = Tournament
+                    .where("date BETWEEN '#{@date_from}' AND '#{@date_to}'")
+                    .order(brand: :asc)
     render json: @tournaments
   end
 
@@ -63,6 +66,11 @@ class Api::V1::TournamentsController < ApplicationController
   end
 
   private
+    def set_date_range
+      @date_from = params[:date_from]
+      @date_to = params[:date_to]
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_tournament
       @tournament = Tournament.find(params[:id])
