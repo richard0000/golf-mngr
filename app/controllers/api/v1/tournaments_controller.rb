@@ -44,6 +44,14 @@ class Api::V1::TournamentsController < ApplicationController
   # PATCH/PUT /tournaments/1
   # PATCH/PUT /tournaments/1.json
   def update
+    @tournament.update(tournament_params)
+
+
+    if @tournament.save
+      render json: @tournament
+    else
+      render json: @tournament.errors
+    end
   end
 
   # DELETE /tournaments/1

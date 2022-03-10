@@ -13,6 +13,14 @@
  *= require_tree .
  *= require_self
  */
+a {
+  color: #fff;
+}
+
+a:hover {
+  color: rgb(109, 5, 5);
+}
+
 .site-layout-content {
   background: #fff;
   padding: 24px;
