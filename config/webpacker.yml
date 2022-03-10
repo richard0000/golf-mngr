@@ -6,6 +6,7 @@ default: &default
   public_root_path: public
   public_output_path: packs
   cache_path: tmp/cache/webpacker
+  resolved_paths: ["app/assets"]
   webpack_compile_output: true
 
   # Additional paths webpack should lookup modules
@@ -33,6 +34,7 @@ default: &default
     - .woff2
 
   extensions:
+    - .jsx
     - .mjs
     - .js
     - .sass
@@ -67,10 +69,9 @@ development:
     quiet: false
     pretty: false
     headers:
-      'Access-Control-Allow-Origin': '*'
+      "Access-Control-Allow-Origin": "*"
     watch_options:
-      ignored: '**/node_modules/**'
-
+      ignored: "**/node_modules/**"
 
 test:
   <<: *default
